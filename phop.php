@@ -1,9 +1,9 @@
 <?php
 // Configuración de la conexión a la base de datos
-$host = "adminuser1.mysql.database.azure.com";
-$username = "adminuser@adminuser1";
+$host = "adminuser2.mysql.database.azure.com";
+$username = "adminuser@adminuser2";
 $password = "Chucha@12*";
-$database = "adminuser1";
+$database = "adminuser2";
 $port = 3306; // Puerto predeterminado para MySQL
 
 // Inicializar una nueva instancia de conexión mysqli
