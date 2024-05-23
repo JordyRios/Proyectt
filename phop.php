@@ -1,8 +1,8 @@
 <?php
 // Configuración de la conexión a la base de datos
 $host = "adminuser1.mysql.database.azure.com";
-$username = "adminuser";
-$password = "Chuchaq12*";
+$username = "adminuser@adminuser1";
+$password = "Chucha@12*";
 $database = "adminuser1";
 $port = 3306; // Puerto predeterminado para MySQL
 
@@ -10,7 +10,7 @@ $port = 3306; // Puerto predeterminado para MySQL
 $con = mysqli_init();
 
 // Configurar la seguridad SSL
-mysqli_ssl_set($con, NULL, NULL, "{path_to_CA_cert}", NULL, NULL);
+mysqli_ssl_set($con, NULL, NULL, "/path/to/your/CA/cert", NULL, NULL);
 
 // Establecer la conexión a la base de datos utilizando SSL
 if (!mysqli_real_connect($con, $host, $username, $password, $database, $port, MYSQLI_CLIENT_SSL)) {
