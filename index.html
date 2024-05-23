@@ -6,42 +6,56 @@
     <title>Formulario de Captura</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
-            max-width: 600px;
-            margin: 50px auto;
+            max-width: 400px;
+            width: 100%;
             background-color: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
         }
         h2 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
         }
         label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: bold;
+            color: #555;
         }
         input[type="text"],
-        input[type="email"],
-        input[type="submit"] {
+        input[type="email"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-sizing: border-box;
+            font-size: 16px;
         }
         input[type="submit"] {
+            width: 100%;
+            padding: 12px;
             background-color: #007bff;
             color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         input[type="submit"]:hover {
             background-color: #0056b3;
@@ -51,6 +65,7 @@
             padding: 10px;
             margin-bottom: 20px;
             border-radius: 5px;
+            font-size: 16px;
         }
         .success {
             background-color: #d4edda;
@@ -72,12 +87,11 @@
                 echo "<div class='message $messageType'>$message</div>";
             }
         ?>
-        <p>Por favor, ingresa tus datos en el formulario a continuación:</p>
         <form action="procesar_formulario.php" method="post">
             <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br>
+            <input type="text" id="nombre" name="nombre" required>
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
+            <input type="email" id="email" name="email" required>
             <input type="submit" value="Enviar">
         </form>
     </div>
