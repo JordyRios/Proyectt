@@ -6,17 +6,11 @@ $password = "Chucha@12*";
 $database = "adminuser2";
 $port = 3306; // Puerto predeterminado para MySQL
 
-// Ruta al archivo del certificado CA
-$ca_cert_path = "/path/to/DigiCertGlobalRootCA.crt.pem"; // Cambia esta ruta al certificado CA correcto
+// Realizar la conexión a la base de datos
+$con = mysqli_connect($host, $username, $password, $database, $port);
 
-// Inicializar una nueva instancia de conexión mysqli
-$con = mysqli_init();
-
-// Configurar la seguridad SSL
-mysqli_ssl_set($con, NULL, NULL, $ca_cert_path, NULL, NULL);
-
-// Establecer la conexión a la base de datos utilizando SSL
-if (!mysqli_real_connect($con, $host, $username, $password, $database, $port, NULL, MYSQLI_CLIENT_SSL)) {
+// Verificar si la conexión fue exitosa
+if (!$con) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
@@ -39,10 +33,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "Error al ejecutar la consulta: " . mysqli_error($con);
         $messageType = "error";
     }
-
-    // Redirigir de vuelta al formulario con el mensaje
-    header("Location: formulario.html?message=" . urlencode($message) . "&type=" . urlencode($messageType));
-    exit();
 }
 
 // Cerrar la conexión
