@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 const db = mysql.createConnection({
     host: 'adminuser2.mysql.database.azure.com',
     user: 'adminuser2',
-    password: 'Chucha@12*', // reemplaza con tu contraseña de administrador
-    database: 'adminuser2', // reemplaza con el nombre de tu base de datos
+    password: 'Chucha@12*', 
+    database: 'adminuser2', 
     ssl: {
         rejectUnauthorized: false
     }
