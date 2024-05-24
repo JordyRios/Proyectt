@@ -16,7 +16,7 @@ $con = mysqli_init();
 mysqli_ssl_set($con, NULL, NULL, $ca_cert_path, NULL, NULL);
 
 // Establecer la conexión a la base de datos utilizando SSL
-if (!mysqli_real_connect($con, $host, $username, $password, $database, $port, MYSQLI_CLIENT_SSL)) {
+if (!mysqli_real_connect($con, $host, $username, $password, $database, $port, NULL, MYSQLI_CLIENT_SSL)) {
     die("Error de conexión: " . mysqli_connect_error());
 }
 
