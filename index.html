@@ -89,16 +89,13 @@
 </head>
 <body>
     <div class="container">
-        <h2>¡Suscríbete a nuestro boletín!</h2>
-        <p>¡Mantente actualizado con nuestras últimas noticias y ofertas!</p>
+        <h2>Ingresa los datos</h2>
         <?php
-            if (isset($_GET['message'])) {
-                $message = htmlspecialchars($_GET['message']);
-                $messageType = htmlspecialchars($_GET['type']);
+            if (isset($message)) {
                 echo "<div class='message $messageType'>$message</div>";
             }
         ?>
-        <form action="procesar_formulario.php" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
             <label for="email">Correo Electrónico:</label>
@@ -112,4 +109,5 @@
     </div>
 </body>
 </html>
+
 
