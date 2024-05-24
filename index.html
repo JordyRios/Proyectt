@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -46,6 +46,7 @@
         }
         input[type="text"],
         input[type="email"],
+        input[type="tel"],
         textarea {
             width: 100%;
             padding: 12px;
@@ -90,12 +91,8 @@
 <body>
     <div class="container">
         <h2>Ingresa los datos</h2>
-        <?php
-            if (isset($message)) {
-                echo "<div class='message $messageType'>$message</div>";
-            }
-        ?>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div id="message" class="message"></div>
+        <form id="dataForm">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
             <label for="email">Correo Electrónico:</label>
@@ -107,7 +104,47 @@
             <input type="submit" value="Suscribirse">
         </form>
     </div>
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            const data = {
+                nombre: nombre,
+                email: email,
+                telefono: telefono,
+                mensaje: mensaje
+            };
+
+            try {
+                const response = await fetch('/api/person', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                const messageElement = document.getElementById('message');
+                if (response.ok) {
+                    messageElement.className = 'message success';
+                    messageElement.textContent = 'Datos enviados con éxito';
+                } else {
+                    messageElement.className = 'message error';
+                    messageElement.textContent = 'Error al enviar los datos: ' + (result.message || response.statusText);
+                }
+            } catch (error) {
+                const messageElement = document.getElementById('message');
+                messageElement.className = 'message error';
+                messageElement.textContent = 'Error al enviar los datos: ' + error.message;
+            }
+        });
+    </script>
 </body>
 </html>
-
-
