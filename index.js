@@ -4,17 +4,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.json());
-app.use(express.static('public')); // Servir archivos estáticos desde la carpeta 'public'
-
 // Configuración de la conexión a la base de datos MySQL
 const db = mysql.createConnection({
-    host: process.env.DB_HOST || 'adminuser.mysql.database.azure.com',
-    user: process.env.DB_USER || 'azureuser',
-    password: process.env.DB_PASSWORD || 'Chucha@1234567', 
-    database: process.env.DB_NAME || 'proyect',
+    host: 'adminuser.mysql.database.azure.com',
+    user: 'azureuser',
+    password: 'Chucha@1234567', // Reemplaza esto con tu contraseña real
+    database: 'proyect',
     ssl: {
-        rejectUnauthorized: false
+        rejectUnauthorized: false // Configuración para evitar errores de SSL
     }
 });
 
@@ -26,6 +23,9 @@ db.connect(err => {
     }
     console.log('Conexión a la base de datos exitosa');
 });
+
+// Middleware para parsear el cuerpo de las peticiones
+app.use(bodyParser.json());
 
 // Ruta para manejar el POST de los datos del formulario
 app.post('/api/person', (req, res) => {
@@ -46,6 +46,7 @@ app.post('/api/person', (req, res) => {
     });
 });
 
+// Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
 });
