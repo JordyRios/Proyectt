@@ -1,7 +1,7 @@
 {
     "name": "proyect",
     "version": "1.0.0",
-    "description": "Una aplicación Node.js simple",
+    "descripción": "Una aplicación Node.js simple para Azure App Service"
     "main": "index.js",
     "scripts": {
       "start": "node index.js"
