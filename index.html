@@ -116,12 +116,12 @@
             const data = {
                 nombre: nombre,
                 email: email,
-                telefono: telefono || null, // Asegurarse de que el teléfono opcional sea manejado adecuadamente
+                telefono: telefono || null,
                 mensaje: mensaje
             };
 
             try {
-                const response = await fetch('https://adminuser2001.azurewebsites.net/api/SubmitData', {
+                const response = await fetch('https://your-app-service-name.azurewebsites.net/script.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
